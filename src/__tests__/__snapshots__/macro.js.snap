@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`import all files 1`] = `
+
+import importAll from '../macro'
+
+const a = importAll('./fixtures/*.js')
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import * as _a from './fixtures/a.js';
+import * as _b from './fixtures/b.js';
+import * as _c from './fixtures/c.js';
+import * as _d from './fixtures/d.js';
+
+
+const a = {
+  'a': _a,
+  'b': _b,
+  'c': _c,
+  'd': _d
+};
+
+`;
+
+exports[`importAll.async uses dynamic import 1`] = `
+
+import importAll from '../macro'
+
+document.getElementById('load-stuff').addEventListener(() => {
+  importAll.async('./fixtures/*.js').then(all => {
+    console.log(all)
+  })
+})
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+document.getElementById('load-stuff').addEventListener(() => {
+  Promise.all([import('./fixtures/a.js'), import('./fixtures/b.js'), import('./fixtures/c.js'), import('./fixtures/d.js')]).then(function importAllHandler(importVals) {
+    return {
+      'a': importVals[0],
+      'b': importVals[1],
+      'c': importVals[2],
+      'd': importVals[3]
+    };
+  }).then(all => {
+    console.log(all);
+  });
+});
+
+`;
+
+exports[`no usage 1`] = `
+
+import importAll from '../macro'
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+
+
+`;
