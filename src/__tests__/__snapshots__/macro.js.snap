@@ -1,34 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`import all files 1`] = `
-
-import importAll from '../macro'
-
-const a = importAll('./fixtures/*.js')
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-import * as _a from './fixtures/a.js';
-import * as _b from './fixtures/b.js';
-import * as _c from './fixtures/c.js';
-import * as _d from './fixtures/d.js';
-
-
-const a = {
-  'a': _a,
-  'b': _b,
-  'c': _c,
-  'd': _d
-};
-
-`;
-
-exports[`importAll.async uses dynamic import 1`] = `
+exports[`importAll uses dynamic import 1`] = `
 
 import importAll from '../macro'
 
 document.getElementById('load-stuff').addEventListener(() => {
-  importAll.async('./fixtures/*.js').then(all => {
+  importAll('./fixtures/*.js').then(all => {
     console.log(all)
   })
 })
@@ -47,6 +24,54 @@ document.getElementById('load-stuff').addEventListener(() => {
     console.log(all);
   });
 });
+
+`;
+
+exports[`importAll.deferred gives an object with dynamic imports 1`] = `
+
+import importAll from '../macro'
+
+const routes = importAll.deferred('./fixtures/*.js')
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const routes = {
+  'a': function a() {
+    return import('./fixtures/a.js');
+  },
+  'b': function b() {
+    return import('./fixtures/b.js');
+  },
+  'c': function c() {
+    return import('./fixtures/c.js');
+  },
+  'd': function d() {
+    return import('./fixtures/d.js');
+  }
+};
+
+`;
+
+exports[`importAll.sync uses static imports 1`] = `
+
+import importAll from '../macro'
+
+const a = importAll.sync('./fixtures/*.js')
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import * as _a from './fixtures/a.js';
+import * as _b from './fixtures/b.js';
+import * as _c from './fixtures/c.js';
+import * as _d from './fixtures/d.js';
+
+
+const a = {
+  'a': _a,
+  'b': _b,
+  'c': _c,
+  'd': _d
+};
 
 `;
 

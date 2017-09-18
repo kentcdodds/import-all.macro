@@ -8,12 +8,17 @@ module.exports = createMacro(prevalMacros)
 function prevalMacros({references, state, babel}) {
   references.default.forEach(referencePath => {
     if (referencePath.parentPath.type === 'CallExpression') {
+      asyncVersion({referencePath, state, babel})
+    } else if (
+      referencePath.parentPath.type === 'MemberExpression' &&
+      referencePath.parentPath.node.property.name === 'sync'
+    ) {
       syncVersion({referencePath, state, babel})
     } else if (
       referencePath.parentPath.type === 'MemberExpression' &&
-      referencePath.parentPath.node.property.name === 'async'
+      referencePath.parentPath.node.property.name === 'deferred'
     ) {
-      asyncVersion({referencePath, state, babel})
+      deferredVersion({referencePath, state, babel})
     }
   })
 }
@@ -22,7 +27,7 @@ function syncVersion({referencePath, state, babel}) {
   const {types: t} = babel
   const {file: {opts: {filename}}} = state
   const importSources = getImportSources(
-    referencePath.parentPath,
+    referencePath.parentPath.parentPath,
     path.dirname(filename),
   )
 
@@ -46,7 +51,7 @@ function syncVersion({referencePath, state, babel}) {
 
   const program = state.file.path
   program.node.body.unshift(...importNodes)
-  referencePath.parentPath.replaceWith(objectExpression)
+  referencePath.parentPath.parentPath.replaceWith(objectExpression)
 }
 
 function asyncVersion({referencePath, state, babel}) {
@@ -58,7 +63,7 @@ function asyncVersion({referencePath, state, babel}) {
     })
   `)
   const importSources = getImportSources(
-    referencePath.parentPath.parentPath,
+    referencePath.parentPath,
     path.dirname(filename),
   )
 
@@ -84,12 +89,41 @@ function asyncVersion({referencePath, state, babel}) {
     {dynamicImports: [], objectProperties: []},
   )
 
-  referencePath.parentPath.parentPath.replaceWith(
+  referencePath.parentPath.replaceWith(
     promiseTemplate({
       ALL_IMPORTS: t.arrayExpression(dynamicImports),
       IMPORT_OBJ: t.objectExpression(objectProperties),
     }),
   )
+}
+
+function deferredVersion({referencePath, state, babel}) {
+  const {types: t} = babel
+  const {file: {opts: {filename}}} = state
+  const importSources = getImportSources(
+    referencePath.parentPath.parentPath,
+    path.dirname(filename),
+  )
+
+  const objectProperties = importSources.map(source => {
+    const sourceId = getFilename(source)
+    return t.objectProperty(
+      t.stringLiteral(sourceId),
+      t.functionExpression(
+        t.identifier(sourceId),
+        [],
+        t.blockStatement([
+          t.returnStatement(
+            t.callExpression(t.import(), [t.stringLiteral(source)]),
+          ),
+        ]),
+      ),
+    )
+  })
+
+  const objectExpression = t.objectExpression(objectProperties)
+
+  referencePath.parentPath.parentPath.replaceWith(objectExpression)
 }
 
 function getImportSources(callExpressionPath, cwd) {

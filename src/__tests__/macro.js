@@ -21,19 +21,24 @@ pluginTester({
   },
   tests: {
     'no usage': `import importAll from '../macro'`,
-    'import all files': `
+    'importAll.sync uses static imports': `
       import importAll from '../macro'
 
-      const a = importAll('./fixtures/*.js')
+      const a = importAll.sync('./fixtures/*.js')
     `,
-    'importAll.async uses dynamic import': `
+    'importAll uses dynamic import': `
       import importAll from '../macro'
 
       document.getElementById('load-stuff').addEventListener(() => {
-        importAll.async('./fixtures/*.js').then(all => {
+        importAll('./fixtures/*.js').then(all => {
           console.log(all)
         })
       })
+    `,
+    'importAll.deferred gives an object with dynamic imports': `
+      import importAll from '../macro'
+
+      const routes = importAll.deferred('./fixtures/*.js')
     `,
   },
 })
