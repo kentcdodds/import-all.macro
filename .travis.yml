@@ -11,7 +11,6 @@ script: npm run validate
 after_success:
   # coverage disabled until we figure out how to measure it for a babel-macro
   # - npx codecov
-  # release disabled until we're ready to automate releases...
-  # - npx -p semantic-release@8 -c "semantic-release pre && npm publish && semantic-release post"
+  - npx -p semantic-release@8 -c "semantic-release pre && npm publish && semantic-release post"
 branches:
   only: master
