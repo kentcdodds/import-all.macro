@@ -11,7 +11,7 @@
 [![downloads][downloads-badge]][npmtrends]
 [![MIT License][license-badge]][LICENSE]
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome][prs-badge]][prs]
 [![Code of Conduct][coc-badge]][coc]
 [![Babel Macro][macros-badge]][babel-macros]
@@ -63,7 +63,7 @@ Here are a few before/after examples:
 ```javascript
 import importAll from 'import-all.macro'
 
-document.getElementById('load-stuff').addEventListener(() => {
+document.getElementById('load-stuff').addEventListener('click', () => {
   importAll('./my-files/*.js').then(all => {
     console.log(all)
   })
@@ -71,7 +71,7 @@ document.getElementById('load-stuff').addEventListener(() => {
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-document.getElementById('load-stuff').addEventListener(() => {
+document.getElementById('load-stuff').addEventListener('click', () => {
   Promise.all([
     import('./my-files/a.js'),
     import('./my-files/b.js'),
@@ -162,8 +162,8 @@ here!
 Thanks goes to these people ([emoji key][emojis]):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-| [<img src="https://avatars.githubusercontent.com/u/1500684?v=3" width="100px;"/><br /><sub>Kent C. Dodds</sub>](https://kentcdodds.com)<br />[💻](https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds "Code") [📖](https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds "Documentation") [🚇](#infra-kentcdodds "Infrastructure (Hosting, Build-Tools, etc)") [⚠️](https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds "Tests") |
-| :---: |
+| [<img src="https://avatars.githubusercontent.com/u/1500684?v=3" width="100px;"/><br /><sub>Kent C. Dodds</sub>](https://kentcdodds.com)<br />[💻](https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds "Code") [📖](https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds "Documentation") [🚇](#infra-kentcdodds "Infrastructure (Hosting, Build-Tools, etc)") [⚠️](https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds "Tests") | [<img src="https://avatars0.githubusercontent.com/u/188426?v=4" width="100px;"/><br /><sub>Jonathan Neal</sub>](http://jonathantneal.com)<br />[📖](https://github.com/kentcdodds/import-all.macro/commits?author=jonathantneal "Documentation") |
+| :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors][all-contributors] specification.

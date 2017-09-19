@@ -36,7 +36,7 @@ pluginTester({
     'README:1 `importAll` uses dynamic import': `
       import importAll from '../macro'
 
-      document.getElementById('load-stuff').addEventListener(() => {
+      document.getElementById('load-stuff').addEventListener('click', () => {
         importAll('./fixtures/*.js').then(all => {
           console.log(all)
         })
