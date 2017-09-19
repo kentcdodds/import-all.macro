@@ -33,6 +33,20 @@ pluginTester({
   },
   tests: {
     'no usage': `import importAll from '../macro'`,
+    'incorrect API usage': {
+      error: true,
+      code: `
+        import importAll from '../macro'
+        const x = importAll.defered('hi')
+      `,
+    },
+    'non-static evaluate-able expression': {
+      error: true,
+      code: `
+        import importAll from '../macro'
+        const x = importAll(global.whatever)
+      `,
+    },
     'README:1 `importAll` uses dynamic import': `
       import importAll from '../macro'
 

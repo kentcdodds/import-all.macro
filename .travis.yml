@@ -9,8 +9,7 @@ node_js: '8'
 install: npm install
 script: npm run validate
 after_success:
-  # coverage disabled until we figure out how to measure it for a babel-macro
-  # - npx codecov
+  - npx codecov
   - npx -p semantic-release@8 -c "semantic-release pre && npm publish && semantic-release post"
 branches:
   only: master

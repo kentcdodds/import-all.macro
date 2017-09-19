@@ -19,6 +19,12 @@ function prevalMacros({references, state, babel}) {
       referencePath.parentPath.node.property.name === 'deferred'
     ) {
       deferredVersion({referencePath, state, babel})
+    } else {
+      throw new Error(
+        `This is not supported: \`${referencePath
+          .findParent(babel.types.isExpression)
+          .getSource()}\`. Please see the import-all.macro documentation`,
+      )
     }
   })
 }

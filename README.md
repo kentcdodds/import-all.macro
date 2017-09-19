@@ -7,6 +7,7 @@
 <hr />
 
 [![Build Status][build-badge]][build]
+[![Code Coverage][coverage-badge]][coverage]
 [![version][version-badge]][package]
 [![downloads][downloads-badge]][npmtrends]
 [![MIT License][license-badge]][LICENSE]
@@ -19,6 +20,8 @@
 [![Watch on GitHub][github-watch-badge]][github-watch]
 [![Star on GitHub][github-star-badge]][github-star]
 [![Tweet][twitter-badge]][twitter]
+
+<a href="https://app.codesponsor.io/link/PKGFLnhDiFvsUA5P4kAXfiPs/kentcdodds/import-all.macro" rel="nofollow"><img src="https://app.codesponsor.io/embed/PKGFLnhDiFvsUA5P4kAXfiPs/kentcdodds/import-all.macro.svg" style="width: 888px; height: 68px;" alt="Sponsor" /></a>
 
 ## The problem
 

@@ -84,6 +84,17 @@ const routes = {
 
 `;
 
+exports[`incorrect API usage 1`] = `
+
+import importAll from 'import-all.macro'
+const x = importAll.defered('hi')
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+Error: <PROJECT_ROOT>/src/__tests__/macro.js: ../macro: This is not supported: \`importAll.defered\`. Please see the import-all.macro documentation
+
+`;
+
 exports[`no usage 1`] = `
 
 import importAll from 'import-all.macro'
@@ -91,5 +102,16 @@ import importAll from 'import-all.macro'
       ↓ ↓ ↓ ↓ ↓ ↓
 
 
+
+`;
+
+exports[`non-static evaluate-able expression 1`] = `
+
+import importAll from 'import-all.macro'
+const x = importAll(global.whatever)
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+Error: <PROJECT_ROOT>/src/__tests__/macro.js: ../macro: There was a problem evaluating the value of the argument for the code: importAll(global.whatever). If the value is dynamic, please make sure that its value is statically deterministic.
 
 `;
