@@ -63,7 +63,7 @@ Here are a few before/after examples:
 ```javascript
 import importAll from 'import-all.macro'
 
-document.getElementById('load-stuff').addEventListener(() => {
+document.getElementById('load-stuff').addEventListener('click', () => {
   importAll('./my-files/*.js').then(all => {
     console.log(all)
   })
@@ -71,7 +71,7 @@ document.getElementById('load-stuff').addEventListener(() => {
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-document.getElementById('load-stuff').addEventListener(() => {
+document.getElementById('load-stuff').addEventListener('click', () => {
   Promise.all([
     import('./my-files/a.js'),
     import('./my-files/b.js'),
