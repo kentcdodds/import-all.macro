@@ -39,15 +39,14 @@ function syncVersion({referencePath, state, babel}) {
 
   const {importNodes, objectProperties} = importSources.reduce(
     (all, source) => {
-      const sourceId = getFilename(source)
-      const id = referencePath.scope.generateUidIdentifier(sourceId)
+      const id = referencePath.scope.generateUidIdentifier(source)
       all.importNodes.push(
         t.importDeclaration(
           [t.importNamespaceSpecifier(id)],
           t.stringLiteral(source),
         ),
       )
-      all.objectProperties.push(t.objectProperty(t.stringLiteral(sourceId), id))
+      all.objectProperties.push(t.objectProperty(t.stringLiteral(source), id))
       return all
     },
     {importNodes: [], objectProperties: []},
@@ -75,14 +74,13 @@ function asyncVersion({referencePath, state, babel}) {
 
   const {dynamicImports, objectProperties} = importSources.reduce(
     (all, source, index) => {
-      const sourceId = getFilename(source)
       all.dynamicImports.push(
         t.callExpression(t.import(), [t.stringLiteral(source)]),
       )
       const computed = true
       all.objectProperties.push(
         t.objectProperty(
-          t.stringLiteral(sourceId),
+          t.stringLiteral(source),
           t.memberExpression(
             t.identifier('importVals'),
             t.numericLiteral(index),
@@ -112,11 +110,10 @@ function deferredVersion({referencePath, state, babel}) {
   )
 
   const objectProperties = importSources.map(source => {
-    const sourceId = getFilename(source)
     return t.objectProperty(
-      t.stringLiteral(sourceId),
+      t.stringLiteral(source),
       t.functionExpression(
-        t.identifier(sourceId),
+        null,
         [],
         t.blockStatement([
           t.returnStatement(
@@ -148,8 +145,4 @@ function getImportSources(callExpressionPath, cwd) {
   }
 
   return glob.sync(globValue, {cwd})
-}
-
-function getFilename(string) {
-  return path.basename(string).slice(0, -path.extname(string).length)
 }

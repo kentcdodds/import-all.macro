@@ -5,7 +5,7 @@ exports[`README:1 \`importAll\` uses dynamic import 1`] = `
 import importAll from 'import-all.macro'
 
 document.getElementById('load-stuff').addEventListener('click', () => {
-  importAll('./my-files/*.js').then(all => {
+  importAll('./files/*.js').then(all => {
     console.log(all)
   })
 })
@@ -14,17 +14,17 @@ document.getElementById('load-stuff').addEventListener('click', () => {
 
 document.getElementById('load-stuff').addEventListener('click', () => {
   Promise.all([
-    import('./my-files/a.js'),
-    import('./my-files/b.js'),
-    import('./my-files/c.js'),
-    import('./my-files/d.js'),
+    import('./files/a.js'),
+    import('./files/b.js'),
+    import('./files/c.js'),
+    import('./files/d.js'),
   ])
     .then(function importAllHandler(importVals) {
       return {
-        a: importVals[0],
-        b: importVals[1],
-        c: importVals[2],
-        d: importVals[3],
+        './files/a.js': importVals[0],
+        './files/b.js': importVals[1],
+        './files/c.js': importVals[2],
+        './files/d.js': importVals[3],
       }
     })
     .then(all => {
@@ -39,20 +39,20 @@ exports[`README:2 \`importAll.sync\` uses static imports 1`] = `
 
 import importAll from 'import-all.macro'
 
-const a = importAll.sync('./my-files/*.js')
+const a = importAll.sync('./files/*.js')
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import * as _a from './my-files/a.js'
-import * as _b from './my-files/b.js'
-import * as _c from './my-files/c.js'
-import * as _d from './my-files/d.js'
+import * as _filesAJs from './files/a.js'
+import * as _filesBJs from './files/b.js'
+import * as _filesCJs from './files/c.js'
+import * as _filesDJs from './files/d.js'
 
 const a = {
-  a: _a,
-  b: _b,
-  c: _c,
-  d: _d,
+  './files/a.js': _filesAJs,
+  './files/b.js': _filesBJs,
+  './files/c.js': _filesCJs,
+  './files/d.js': _filesDJs,
 }
 
 
@@ -62,22 +62,22 @@ exports[`README:3 \`importAll.deferred\` gives an object with dynamic imports 1`
 
 import importAll from 'import-all.macro'
 
-const routes = importAll.deferred('./my-files/*.js')
+const routes = importAll.deferred('./files/*.js')
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
 const routes = {
-  a: function a() {
-    return import('./my-files/a.js')
+  './files/a.js': function() {
+    return import('./files/a.js')
   },
-  b: function b() {
-    return import('./my-files/b.js')
+  './files/b.js': function() {
+    return import('./files/b.js')
   },
-  c: function c() {
-    return import('./my-files/c.js')
+  './files/c.js': function() {
+    return import('./files/c.js')
   },
-  d: function d() {
-    return import('./my-files/d.js')
+  './files/d.js': function() {
+    return import('./files/d.js')
   },
 }
 
