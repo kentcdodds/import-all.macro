@@ -12,7 +12,7 @@
 [![downloads][downloads-badge]][npmtrends]
 [![MIT License][license-badge]][LICENSE]
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome][prs-badge]][prs]
 [![Code of Conduct][coc-badge]][coc]
 [![Babel Macro][macros-badge]][babel-macros]
@@ -165,8 +165,8 @@ here!
 Thanks goes to these people ([emoji key][emojis]):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-| [<img src="https://avatars.githubusercontent.com/u/1500684?v=3" width="100px;"/><br /><sub>Kent C. Dodds</sub>](https://kentcdodds.com)<br />[💻](https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds "Code") [📖](https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds "Documentation") [🚇](#infra-kentcdodds "Infrastructure (Hosting, Build-Tools, etc)") [⚠️](https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds "Tests") | [<img src="https://avatars0.githubusercontent.com/u/188426?v=4" width="100px;"/><br /><sub>Jonathan Neal</sub>](http://jonathantneal.com)<br />[📖](https://github.com/kentcdodds/import-all.macro/commits?author=jonathantneal "Documentation") |
-| :---: | :---: |
+| [<img src="https://avatars.githubusercontent.com/u/1500684?v=3" width="100px;"/><br /><sub>Kent C. Dodds</sub>](https://kentcdodds.com)<br />[💻](https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds "Code") [📖](https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds "Documentation") [🚇](#infra-kentcdodds "Infrastructure (Hosting, Build-Tools, etc)") [⚠️](https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds "Tests") | [<img src="https://avatars0.githubusercontent.com/u/188426?v=4" width="100px;"/><br /><sub>Jonathan Neal</sub>](http://jonathantneal.com)<br />[📖](https://github.com/kentcdodds/import-all.macro/commits?author=jonathantneal "Documentation") | [<img src="https://avatars0.githubusercontent.com/u/6004414?v=4" width="100px;"/><br /><sub>Rafał Ruciński</sub>](https://fatfisz.com)<br />[🐛](https://github.com/kentcdodds/import-all.macro/issues?q=author%3Afatfisz "Bug reports") [💻](https://github.com/kentcdodds/import-all.macro/commits?author=fatfisz "Code") |
+| :---: | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors][all-contributors] specification.
