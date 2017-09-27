@@ -4,7 +4,7 @@ import plugin from 'babel-macros'
 import prettier from 'prettier'
 import {prettier as prettierConfig} from 'kcd-scripts/config'
 
-const projectRoot = path.join(__dirname, '../../')
+const projectRoot = path.join(__dirname, '../../').replace(/\\/g, '/')
 
 expect.addSnapshotSerializer({
   print(val) {
