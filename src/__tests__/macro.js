@@ -11,7 +11,7 @@ expect.addSnapshotSerializer({
     return val
       .split(projectRoot)
       .join('<PROJECT_ROOT>/')
-      .replace(/fixtures/g, 'my-files')
+      .replace(/fixtures/g, 'files')
       .replace(/..\/macro/, 'import-all.macro')
   },
   test(val) {
