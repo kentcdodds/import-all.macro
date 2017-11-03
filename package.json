@@ -22,7 +22,7 @@
   "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
   "license": "MIT",
   "dependencies": {
-    "babel-macros": "^1.0.2",
+    "babel-macros": "^1.2.0",
     "glob": "^7.1.2"
   },
   "devDependencies": {
