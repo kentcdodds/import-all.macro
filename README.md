@@ -1,7 +1,7 @@
 <div align="center">
 <h1>import-all.macro</h1>
 
-<p>A babel-macro that allows you to import all files that match a glob</p>
+<p>A babel-plugin-macro that allows you to import all files that match a glob</p>
 </div>
 
 <hr />
@@ -30,7 +30,7 @@ individually.
 
 ## This solution
 
-This is a [babel-macro][babel-macros] which allows you to import files that
+This is a [babel-plugin-macro][babel-plugin-macros] which allows you to import files that
 match a glob. It supports `import` statements for synchronous resolution as well
 as dynamic `import()` for deferred resolution (for code splitting with react
 router for example).
@@ -46,7 +46,7 @@ npm install --save-dev import-all.macro
 
 ## Usage
 
-Once you've [configured `babel-macros`][babel-macros-user] you can
+Once you've [configured `babel-macros`][https://github.com/kentcdodds/babel-plugin-macros/blob/master/other/docs/user.md] you can
 import/require `import-all.macro`.
 
 The `importAll` functions accept a [`glob`][glob] and will transpile your code
