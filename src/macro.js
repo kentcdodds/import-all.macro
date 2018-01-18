@@ -1,6 +1,6 @@
 const path = require('path')
 // const printAST = require('ast-pretty-print')
-const {createMacro} = require('babel-macros')
+const {createMacro} = require('babel-plugin-macros')
 const glob = require('glob')
 
 module.exports = createMacro(prevalMacros)

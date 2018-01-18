@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`README:1 \`importAll\` uses dynamic import 1`] = `
+exports[`macros README:1 \`importAll\` uses dynamic import: README:1 \`importAll\` uses dynamic import 1`] = `
 
 import importAll from 'import-all.macro'
 
@@ -35,7 +35,7 @@ document.getElementById('load-stuff').addEventListener('click', () => {
 
 `;
 
-exports[`README:2 \`importAll.sync\` uses static imports 1`] = `
+exports[`macros README:2 \`importAll.sync\` uses static imports: README:2 \`importAll.sync\` uses static imports 1`] = `
 
 import importAll from 'import-all.macro'
 
@@ -58,7 +58,7 @@ const a = {
 
 `;
 
-exports[`README:3 \`importAll.deferred\` gives an object with dynamic imports 1`] = `
+exports[`macros README:3 \`importAll.deferred\` gives an object with dynamic imports: README:3 \`importAll.deferred\` gives an object with dynamic imports 1`] = `
 
 import importAll from 'import-all.macro'
 
@@ -84,7 +84,7 @@ const routes = {
 
 `;
 
-exports[`incorrect API usage 1`] = `
+exports[`macros incorrect API usage: incorrect API usage 1`] = `
 
 import importAll from 'import-all.macro'
 const x = importAll.defered('hi')
@@ -95,7 +95,7 @@ Error: <PROJECT_ROOT>/src/__tests__/macro.js: ../macro: This is not supported: \
 
 `;
 
-exports[`no usage 1`] = `
+exports[`macros no usage: no usage 1`] = `
 
 import importAll from 'import-all.macro'
 
@@ -105,7 +105,7 @@ import importAll from 'import-all.macro'
 
 `;
 
-exports[`non-static evaluate-able expression 1`] = `
+exports[`macros non-static evaluate-able expression: non-static evaluate-able expression 1`] = `
 
 import importAll from 'import-all.macro'
 const x = importAll(global.whatever)

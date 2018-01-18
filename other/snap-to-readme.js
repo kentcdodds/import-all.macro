@@ -5,11 +5,11 @@ const readmePath = path.join(__dirname, '../README.md')
 const readme = fs.readFileSync(readmePath, 'utf8')
 const snaps = require('../src/__tests__/__snapshots__/macro.js.snap')
 
-const snapNumberRegex = /^README:(\d+)/
-const snapTitleRegex = /^README:\d+(.*) \d+$/
+const snapNumberRegex = /^macros README:(\d+)/
+const snapTitleRegex = /^macros README:\d+(.*) \d+$/
 const readmeSnapRegex = /<!-- SNAP_TO_README:START -->[\s\S]*?<!-- SNAP_TO_README:END -->/
 const snapsToUse = Object.keys(snaps)
-  .filter(name => name.startsWith('README'))
+  .filter(name => name.startsWith('macros README'))
   .sort(
     (nameA, nameB) =>
       Number(nameA.match(snapNumberRegex)[1]) >

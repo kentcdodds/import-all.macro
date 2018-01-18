@@ -1,15 +1,9 @@
 sudo: false
 language: node_js
-cache:
-  directories:
-    - ~/.npm
 notifications:
   email: false
 node_js: '8'
-install: npm install
 script: npm run validate
-after_success:
-  - npx codecov
-  - npx -p semantic-release@8 -c "semantic-release pre && npm publish && semantic-release post"
+after_success: kcd-scripts travis-after-success
 branches:
   only: master

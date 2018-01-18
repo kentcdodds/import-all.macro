@@ -2,7 +2,7 @@
   "name": "import-all.macro",
   "version": "0.0.0-semantically-released",
   "description":
-    "A babel-macro that allows you to import all files that match a glob",
+    "A macro for babel-plugin-macros that allows you to import all files that match a glob",
   "main": "dist/index.js",
   "engines": {
     "node": "> 4",
@@ -18,21 +18,24 @@
     "precommit": "kcd-scripts precommit"
   },
   "files": ["dist"],
-  "keywords": [],
+  "keywords": ["babel-plugin-macros"],
   "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
   "license": "MIT",
   "dependencies": {
-    "babel-macros": "^1.2.0",
+    "babel-plugin-macros": "^2.0.0",
     "glob": "^7.1.2"
   },
   "devDependencies": {
     "ast-pretty-print": "^2.0.1",
-    "babel-plugin-tester": "^4.0.0",
-    "kcd-scripts": "^0.16.0",
-    "prettier": "^1.7.0"
+    "babel-plugin-tester": "^5.0.0",
+    "kcd-scripts": "^0.32.1",
+    "prettier": "^1.10.2"
   },
   "eslintConfig": {
-    "extends": "./node_modules/kcd-scripts/eslint.js"
+    "extends": "./node_modules/kcd-scripts/eslint.js",
+    "rules": {
+      "complexity": ["error", 12]
+    }
   },
   "eslintIgnore": ["node_modules", "coverage", "dist"],
   "repository": {
