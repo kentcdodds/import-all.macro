@@ -154,19 +154,22 @@ function deferredNamedVersion({referencePath, state, babel}) {
       opts: {filename},
     },
   } = state
-
+  const fileDir = path.dirname(filename)
   const importSources = getImportSources(
     referencePath.parentPath.parentPath,
-    path.dirname(filename),
+    fileDir,
   )
 
   const dependencies = importSources.reduce((acc, cur) => {
     const items = []
-    const code = readFileSync(cur, 'utf-8').toString()
+    const relPath = path.join(fileDir, cur)
+    const code = readFileSync(relPath, 'utf-8').toString()
     const ast = babel.parse(code)
     babel.traverse(ast, {
       ExportNamedDeclaration: p => {
-        items.push(p.node.declaration.id.name)
+        if (p.node.declaration.id) {
+          items.push(p.node.declaration.id.name)
+        }
       },
     })
     acc.set(cur, items)
