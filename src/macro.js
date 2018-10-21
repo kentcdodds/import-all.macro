@@ -1,3 +1,4 @@
+const { readFileSync } = require("fs");
 const path = require('path')
 // const printAST = require('ast-pretty-print')
 const {createMacro} = require('babel-plugin-macros')
@@ -19,6 +20,11 @@ function prevalMacros({references, state, babel}) {
       referencePath.parentPath.node.property.name === 'deferred'
     ) {
       deferredVersion({referencePath, state, babel})
+    } else if (
+      referencePath.parentPath.type === "MemberExpression" &&
+      referencePath.parentPath.node.property.name === "deferredNamed"
+    ) {
+      deferredNamedVersion({ referencePath, state, babel });
     } else {
       throw new Error(
         `This is not supported: \`${referencePath
@@ -127,6 +133,75 @@ function deferredVersion({referencePath, state, babel}) {
   const objectExpression = t.objectExpression(objectProperties)
 
   referencePath.parentPath.parentPath.replaceWith(objectExpression)
+}
+
+function deferredNamedVersion({ referencePath, state, babel }) {
+  const { types: t } = babel;
+  const {
+    file: {
+      opts: { filename }
+    }
+  } = state;
+
+  const importSources = getImportSources(
+    referencePath.parentPath.parentPath,
+    path.dirname(filename)
+  );
+
+  const dependencies = importSources.reduce((acc, cur) => {
+    const items = [];
+    const code = readFileSync(cur, "utf-8").toString();
+    const ast = babel.parse(code);
+    babel.traverse(ast, {
+      ExportNamedDeclaration: path => {
+        items.push(path.node.declaration.id.name);
+      }
+    });
+    acc.set(cur, items);
+    return acc;
+  }, new Map());
+
+  const objectProperties = [...dependencies.keys()].reduce((acc, source) => {
+    const exportedItems = dependencies.get(source);
+    const items = exportedItems.map(exportName =>
+      t.objectProperty(
+        t.stringLiteral(exportName),
+        t.functionExpression(
+          null,
+          [],
+          t.blockStatement([
+            t.returnStatement(
+              t.callExpression(
+                t.memberExpression(
+                  t.callExpression(t.import(), [t.stringLiteral(source)]),
+                  t.identifier("then")
+                ),
+                [
+                  t.functionExpression(
+                    null,
+                    [t.identifier("res")],
+                    t.blockStatement([
+                      t.returnStatement(
+                        t.memberExpression(
+                          t.identifier("res"),
+                          t.identifier(exportName)
+                        )
+                      )
+                    ])
+                  )
+                ]
+              )
+            )
+          ])
+        )
+      )
+    );
+    return acc.concat(items);
+  }, []);
+
+  const objectExpression = t.objectExpression(objectProperties);
+
+  referencePath.parentPath.parentPath.replaceWith(objectExpression);
 }
 
 function getImportSources(callExpressionPath, cwd) {
