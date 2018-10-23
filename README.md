@@ -60,7 +60,7 @@ npm install --save-dev import-all.macro
 
 ## Usage
 
-Once you've [configured `babel-plugin-macros`][https://github.com/kentcdodds/babel-plugin-macros/blob/master/other/docs/user.md] you can
+Once you've [configured `babel-plugin-macros`](https://github.com/kentcdodds/babel-plugin-macros/blob/master/other/docs/user.md) you can
 import/require `import-all.macro`.
 
 The `importAll` functions accept a [`glob`][glob] and will transpile your code
@@ -222,6 +222,5 @@ MIT
 [twitter-badge]: https://img.shields.io/twitter/url/https/github.com/kentcdodds/import-all.macro.svg?style=social
 [emojis]: https://github.com/kentcdodds/all-contributors#emoji-key
 [all-contributors]: https://github.com/kentcdodds/all-contributors
-[babel-plugin-macros-user]: https://github.com/kentcdodds/babel-plugin-macros/blob/master/other/docs/user.md
 [glob]: https://www.npmjs.com/package/glob
 [sunil-tweet]: https://twitter.com/threepointone/status/908290510225330176
