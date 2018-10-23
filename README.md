@@ -197,6 +197,7 @@ MIT
 
 [npm]: https://www.npmjs.com/
 [node]: https://nodejs.org
+[configured `babel-plugin-macros`]: https://github.com/kentcdodds/babel-plugin-macros/blob/master/other/docs/user.md
 [build-badge]: https://img.shields.io/travis/kentcdodds/import-all.macro.svg?style=flat-square
 [build]: https://travis-ci.org/kentcdodds/import-all.macro
 [coverage-badge]: https://img.shields.io/codecov/c/github/kentcdodds/import-all.macro.svg?style=flat-square
@@ -222,6 +223,5 @@ MIT
 [twitter-badge]: https://img.shields.io/twitter/url/https/github.com/kentcdodds/import-all.macro.svg?style=social
 [emojis]: https://github.com/kentcdodds/all-contributors#emoji-key
 [all-contributors]: https://github.com/kentcdodds/all-contributors
-[babel-plugin-macros-user]: https://github.com/kentcdodds/babel-plugin-macros/blob/master/other/docs/user.md
 [glob]: https://www.npmjs.com/package/glob
 [sunil-tweet]: https://twitter.com/threepointone/status/908290510225330176
