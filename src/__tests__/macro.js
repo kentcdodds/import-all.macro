@@ -66,5 +66,10 @@ pluginTester({
 
       const routes = importAll.deferred('./fixtures/*.js')
     `,
+    'README:4 `importAll.deferredNamed` gives an object where key is the named export and value is the dynamic import': `
+    import importAll from '../macro'
+
+    const routes = importAll.deferredNamed('./fixtures/*.js')
+    `,
   },
 })

@@ -160,16 +160,37 @@ function deferredNamedVersion({referencePath, state, babel}) {
     fileDir,
   )
 
+  const getAst = code => {
+    // babel 7
+    if (babel.parse) {
+      return babel.parse(code)
+    }
+    // babel 6
+    const file = new babel.File({code})
+    return file.parse(code)
+  }
+
+  const getExportedName = p => {
+    if (p.node.declaration) {
+      // class, function
+      if (p.node.declaration.id) {
+        return [p.node.declaration.id.name]
+      }
+      // export var, const, let
+      return [p.node.declaration.declarations[0].id.name]
+    }
+    // export { A, B, C }
+    return p.node.specifiers.map(el => el.exported.name)
+  }
+
   const dependencies = importSources.reduce((acc, cur) => {
     const items = []
     const relPath = path.join(fileDir, cur)
     const code = readFileSync(relPath, 'utf-8').toString()
-    const ast = babel.parse(code)
+    const ast = getAst(code)
     babel.traverse(ast, {
       ExportNamedDeclaration: p => {
-        if (p.node.declaration.id) {
-          items.push(p.node.declaration.id.name)
-        }
+        items.push(...getExportedName(p))
       },
     })
     acc.set(cur, items)

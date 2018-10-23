@@ -84,6 +84,40 @@ const routes = {
 
 `;
 
+exports[`macros README:4 \`importAll.deferredNamed\` gives an object where key is the named export and value is the dynamic import: README:4 \`importAll.deferredNamed\` gives an object where key is the named export and value is the dynamic import 1`] = `
+
+import importAll from 'import-all.macro'
+
+const routes = importAll.deferredNamed('./files/*.js')
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const routes = {
+  foo: function() {
+    return import('./files/a.js').then(function(res) {
+      return res.foo
+    })
+  },
+  bar: function() {
+    return import('./files/b.js').then(function(res) {
+      return res.bar
+    })
+  },
+  Baz: function() {
+    return import('./files/c.js').then(function(res) {
+      return res.Baz
+    })
+  },
+  A: function() {
+    return import('./files/d.js').then(function(res) {
+      return res.A
+    })
+  },
+}
+
+
+`;
+
 exports[`macros incorrect API usage: incorrect API usage 1`] = `
 
 import importAll from 'import-all.macro'
