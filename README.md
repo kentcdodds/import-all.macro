@@ -18,7 +18,7 @@
 [![downloads][downloads-badge]][npmtrends]
 [![MIT License][license-badge]][license]
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome][prs-badge]][prs]
 [![Code of Conduct][coc-badge]][coc]
 [![Babel Macro][macros-badge]][babel-plugin-macros]
@@ -187,10 +187,15 @@ here!
 Thanks goes to these people ([emoji key][emojis]):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-
 <!-- prettier-ignore -->
-| [<img src="https://avatars.githubusercontent.com/u/1500684?v=3" width="100px;"/><br /><sub><b>Kent C. Dodds</b></sub>](https://kentcdodds.com)<br />[💻](https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds "Code") [📖](https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds "Documentation") [🚇](#infra-kentcdodds "Infrastructure (Hosting, Build-Tools, etc)") [⚠️](https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds "Tests") | [<img src="https://avatars0.githubusercontent.com/u/188426?v=4" width="100px;"/><br /><sub><b>Jonathan Neal</b></sub>](http://jonathantneal.com)<br />[📖](https://github.com/kentcdodds/import-all.macro/commits?author=jonathantneal "Documentation") | [<img src="https://avatars0.githubusercontent.com/u/6004414?v=4" width="100px;"/><br /><sub><b>Rafał Ruciński</b></sub>](https://fatfisz.com)<br />[🐛](https://github.com/kentcdodds/import-all.macro/issues?q=author%3Afatfisz "Bug reports") [💻](https://github.com/kentcdodds/import-all.macro/commits?author=fatfisz "Code") |
-| :---: | :---: | :---: |
+<table>
+  <tr>
+    <td align="center"><a href="https://kentcdodds.com"><img src="https://avatars.githubusercontent.com/u/1500684?v=3" width="100px;" alt="Kent C. Dodds"/><br /><sub><b>Kent C. Dodds</b></sub></a><br /><a href="https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds" title="Code">💻</a> <a href="https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds" title="Documentation">📖</a> <a href="#infra-kentcdodds" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/kentcdodds/import-all.macro/commits?author=kentcdodds" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://jonathantneal.com"><img src="https://avatars0.githubusercontent.com/u/188426?v=4" width="100px;" alt="Jonathan Neal"/><br /><sub><b>Jonathan Neal</b></sub></a><br /><a href="https://github.com/kentcdodds/import-all.macro/commits?author=jonathantneal" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://fatfisz.com"><img src="https://avatars0.githubusercontent.com/u/6004414?v=4" width="100px;" alt="Rafał Ruciński"/><br /><sub><b>Rafał Ruciński</b></sub></a><br /><a href="https://github.com/kentcdodds/import-all.macro/issues?q=author%3Afatfisz" title="Bug reports">🐛</a> <a href="https://github.com/kentcdodds/import-all.macro/commits?author=fatfisz" title="Code">💻</a></td>
+    <td align="center"><a href="https://stackshare.io/jdorfman/decisions"><img src="https://avatars1.githubusercontent.com/u/398230?v=4" width="100px;" alt="Justin Dorfman"/><br /><sub><b>Justin Dorfman</b></sub></a><br /><a href="#fundingFinding-jdorfman" title="Funding Finding">🔍</a></td>
+  </tr>
+</table>
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
