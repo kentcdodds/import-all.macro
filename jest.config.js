@@ -1,5 +1,6 @@
-const jestConfig = require('kcd-scripts/config').jest
+const {jest: jestConfig} = require('kcd-scripts/config')
 
-delete jestConfig.coverageThreshold
-
-module.exports = jestConfig
+module.exports = {
+  ...jestConfig,
+  coverageThreshold: null,
+}

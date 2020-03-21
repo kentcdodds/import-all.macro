@@ -1,5 +1,6 @@
-const lintStagedConfig = require('kcd-scripts/config').lintStaged
+const {lintStaged: lintStagedConfig} = require('kcd-scripts/config')
 
-module.exports = Object.assign(lintStagedConfig.linters, {
-  '**/__snapshots__/**': ['node other/snap-to-readme.js', 'git add README.md'],
-})
+module.exports = {
+  ...lintStagedConfig,
+  '**/__snapshots__/**': ['node other/snap-to-readme.js'],
+}
