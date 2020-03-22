@@ -4,7 +4,7 @@
   "description": "A macro for babel-plugin-macros that allows you to import all files that match a glob",
   "main": "dist/index.js",
   "engines": {
-    "node": ">=10.13",
+    "node": ">=10",
     "npm": ">=6"
   },
   "scripts": {
@@ -31,8 +31,8 @@
   "devDependencies": {
     "ast-pretty-print": "^2.0.1",
     "babel-plugin-tester": "^8.0.1",
-    "kcd-scripts": "^5.5.0",
-    "prettier": "1.19.1"
+    "kcd-scripts": "^5.6.0",
+    "prettier": "2.0.1"
   },
   "eslintConfig": {
     "extends": "./node_modules/kcd-scripts/eslint.js",
