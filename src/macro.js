@@ -31,7 +31,11 @@ function prevalMacros({references, state, babel}) {
 
 function syncVersion({referencePath, state, babel}) {
   const {types: t} = babel
-  const {file: {opts: {filename}}} = state
+  const {
+    file: {
+      opts: {filename},
+    },
+  } = state
   const importSources = getImportSources(
     referencePath.parentPath.parentPath,
     path.dirname(filename),
@@ -61,7 +65,11 @@ function syncVersion({referencePath, state, babel}) {
 
 function asyncVersion({referencePath, state, babel}) {
   const {types: t, template} = babel
-  const {file: {opts: {filename}}} = state
+  const {
+    file: {
+      opts: {filename},
+    },
+  } = state
   const promiseTemplate = template(`
     Promise.all(ALL_IMPORTS).then(function importAllHandler(importVals) {
       return IMPORT_OBJ
@@ -103,7 +111,11 @@ function asyncVersion({referencePath, state, babel}) {
 
 function deferredVersion({referencePath, state, babel}) {
   const {types: t} = babel
-  const {file: {opts: {filename}}} = state
+  const {
+    file: {
+      opts: {filename},
+    },
+  } = state
   const importSources = getImportSources(
     referencePath.parentPath.parentPath,
     path.dirname(filename),

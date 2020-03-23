@@ -26,10 +26,7 @@ pluginTester({
     filename: __filename,
   },
   formatResult(result) {
-    return prettier.format(
-      result,
-      Object.assign({trailingComma: 'es5'}, prettierConfig),
-    )
+    return prettier.format(result, prettierConfig)
   },
   tests: {
     'no usage': `import importAll from '../macro'`,

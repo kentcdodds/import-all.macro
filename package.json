@@ -1,46 +1,56 @@
 {
   "name": "import-all.macro",
   "version": "0.0.0-semantically-released",
-  "description":
-    "A macro for babel-plugin-macros that allows you to import all files that match a glob",
+  "description": "A macro for babel-plugin-macros that allows you to import all files that match a glob",
   "main": "dist/index.js",
   "engines": {
-    "node": "> 4",
-    "npm": "> 3"
+    "node": ">=10",
+    "npm": ">=6"
   },
   "scripts": {
-    "add-contributor": "kcd-scripts contributors add",
     "build": "kcd-scripts build",
     "lint": "kcd-scripts lint",
+    "setup": "npm install && npm run validate -s",
     "test": "kcd-scripts test",
     "test:update": "npm test -- --updateSnapshot --coverage",
-    "validate": "kcd-scripts validate",
-    "precommit": "kcd-scripts precommit"
+    "validate": "kcd-scripts validate"
   },
-  "files": ["dist"],
-  "keywords": ["babel-plugin-macros"],
-  "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "babel-plugin-macros"
+  ],
+  "author": "Kent C. Dodds <me@kentcdodds.com> (https://kentcdodds.com)",
   "license": "MIT",
   "dependencies": {
-    "babel-plugin-macros": "^2.0.0",
-    "glob": "^7.1.2"
+    "@babel/runtime": "^7.9.2",
+    "babel-plugin-macros": "^2.8.0",
+    "glob": "^7.1.6"
   },
   "devDependencies": {
     "ast-pretty-print": "^2.0.1",
-    "babel-plugin-tester": "^5.0.0",
-    "kcd-scripts": "^0.32.1",
-    "prettier": "^1.10.2"
+    "babel-plugin-tester": "^8.0.1",
+    "kcd-scripts": "^5.6.0",
+    "prettier": "2.0.1"
   },
   "eslintConfig": {
     "extends": "./node_modules/kcd-scripts/eslint.js",
     "rules": {
-      "complexity": ["error", 12]
+      "complexity": [
+        "error",
+        12
+      ]
     }
   },
-  "eslintIgnore": ["node_modules", "coverage", "dist"],
+  "eslintIgnore": [
+    "node_modules",
+    "coverage",
+    "dist"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/kentcdodds/import-all.macro.git"
+    "url": "https://github.com/kentcdodds/import-all.macro"
   },
   "bugs": {
     "url": "https://github.com/kentcdodds/import-all.macro/issues"

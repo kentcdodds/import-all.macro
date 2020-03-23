@@ -10,12 +10,11 @@ const snapTitleRegex = /^macros README:\d+(.*) \d+$/
 const readmeSnapRegex = /<!-- SNAP_TO_README:START -->[\s\S]*?<!-- SNAP_TO_README:END -->/
 const snapsToUse = Object.keys(snaps)
   .filter(name => name.startsWith('macros README'))
-  .sort(
-    (nameA, nameB) =>
-      Number(nameA.match(snapNumberRegex)[1]) >
-      Number(nameB.match(snapNumberRegex)[1])
-        ? 1
-        : 0,
+  .sort((nameA, nameB) =>
+    Number(nameA.match(snapNumberRegex)[1]) >
+    Number(nameB.match(snapNumberRegex)[1])
+      ? 1
+      : 0,
   )
   .reduce((acc, key) => {
     const title = key.match(snapTitleRegex)[1].trim()

@@ -47,7 +47,6 @@ import * as _filesAJs from './files/a.js'
 import * as _filesBJs from './files/b.js'
 import * as _filesCJs from './files/c.js'
 import * as _filesDJs from './files/d.js'
-
 const a = {
   './files/a.js': _filesAJs,
   './files/b.js': _filesBJs,
@@ -67,16 +66,16 @@ const routes = importAll.deferred('./files/*.js')
       ↓ ↓ ↓ ↓ ↓ ↓
 
 const routes = {
-  './files/a.js': function() {
+  './files/a.js': function () {
     return import('./files/a.js')
   },
-  './files/b.js': function() {
+  './files/b.js': function () {
     return import('./files/b.js')
   },
-  './files/c.js': function() {
+  './files/c.js': function () {
     return import('./files/c.js')
   },
-  './files/d.js': function() {
+  './files/d.js': function () {
     return import('./files/d.js')
   },
 }
