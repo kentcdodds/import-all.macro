@@ -21,13 +21,9 @@ expect.addSnapshotSerializer({
 export function createMacroTests(pluginTesterOptions) {
   pluginTester({
     snapshot: true,
-    babelOptions: {
-      filename: __filename,
-    },
     formatResult(result) {
       return prettier.format(result, prettierConfig)
     },
     ...pluginTesterOptions,
   })
 }
-
