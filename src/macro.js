@@ -3,22 +3,23 @@ const path = require('path')
 const {createMacro} = require('babel-plugin-macros')
 const glob = require('glob')
 
-module.exports = createMacro(prevalMacros)
+module.exports = createMacro(prevalMacros, { configName: 'importAll' })
 
-function prevalMacros({references, state, babel}) {
+function prevalMacros({references, ...macroOptions}) {
+  const { babel } = macroOptions
   references.default.forEach(referencePath => {
     if (referencePath.parentPath.type === 'CallExpression') {
-      asyncVersion({referencePath, state, babel})
+      asyncVersion({referencePath, ...macroOptions})
     } else if (
       referencePath.parentPath.type === 'MemberExpression' &&
       referencePath.parentPath.node.property.name === 'sync'
     ) {
-      syncVersion({referencePath, state, babel})
+      syncVersion({referencePath, ...macroOptions})
     } else if (
       referencePath.parentPath.type === 'MemberExpression' &&
       referencePath.parentPath.node.property.name === 'deferred'
     ) {
-      deferredVersion({referencePath, state, babel})
+      deferredVersion({referencePath, ...macroOptions})
     } else {
       throw new Error(
         `This is not supported: \`${referencePath
@@ -29,7 +30,7 @@ function prevalMacros({references, state, babel}) {
   })
 }
 
-function syncVersion({referencePath, state, babel}) {
+function syncVersion({referencePath, state, babel, config}) {
   const {types: t} = babel
   const {
     file: {
@@ -39,6 +40,7 @@ function syncVersion({referencePath, state, babel}) {
   const importSources = getImportSources(
     referencePath.parentPath.parentPath,
     path.dirname(filename),
+    config,
   )
 
   const {importNodes, objectProperties} = importSources.reduce(
@@ -63,7 +65,7 @@ function syncVersion({referencePath, state, babel}) {
   referencePath.parentPath.parentPath.replaceWith(objectExpression)
 }
 
-function asyncVersion({referencePath, state, babel}) {
+function asyncVersion({referencePath, state, babel,config}) {
   const {types: t, template} = babel
   const {
     file: {
@@ -78,6 +80,7 @@ function asyncVersion({referencePath, state, babel}) {
   const importSources = getImportSources(
     referencePath.parentPath,
     path.dirname(filename),
+    config,
   )
 
   const {dynamicImports, objectProperties} = importSources.reduce(
@@ -109,7 +112,7 @@ function asyncVersion({referencePath, state, babel}) {
   )
 }
 
-function deferredVersion({referencePath, state, babel}) {
+function deferredVersion({referencePath, state, babel, config}) {
   const {types: t} = babel
   const {
     file: {
@@ -119,6 +122,7 @@ function deferredVersion({referencePath, state, babel}) {
   const importSources = getImportSources(
     referencePath.parentPath.parentPath,
     path.dirname(filename),
+    config,
   )
 
   const objectProperties = importSources.map(source => {
@@ -141,7 +145,7 @@ function deferredVersion({referencePath, state, babel}) {
   referencePath.parentPath.parentPath.replaceWith(objectExpression)
 }
 
-function getImportSources(callExpressionPath, cwd) {
+function getImportSources(callExpressionPath, cwd, config) {
   let globValue
   try {
     globValue = callExpressionPath.get('arguments')[0].evaluate().value
@@ -156,5 +160,10 @@ function getImportSources(callExpressionPath, cwd) {
     )
   }
 
-  return glob.sync(globValue, {cwd})
+  const filepaths = glob.sync(globValue, {cwd})
+  if (typeof config.transformModulePath === 'function') {
+    return filepaths.map((p) => config.transformModulePath(p))
+  }
+
+  return filepaths
 }

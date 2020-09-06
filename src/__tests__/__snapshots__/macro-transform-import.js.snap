@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`macros README:4 configure \`importAll\` to transform import path before generating imports: README:4 configure \`importAll\` to transform import path before generating imports 1`] = `
+
+import importAll from 'import-all.macro'
+
+const a = importAll.sync('./files/*.js')
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import * as _filesA from './files/a'
+import * as _filesB from './files/b'
+import * as _filesC from './files/c'
+import * as _filesD from './files/d'
+const a = {
+  './files/a': _filesA,
+  './files/b': _filesB,
+  './files/c': _filesC,
+  './files/d': _filesD,
+}
+
+
+`;
