@@ -169,8 +169,15 @@ const routes = {
 ```javascript
 module.exports = {
   importAll: {
-    transformModulePath(modulePath) {
-      return modulePath.replace(/\.js$/, '')
+    transformModulePath(modulePath, importingPath) {
+      const projectRoot = path.join(__dirname, '../../')
+      const modulePathWithoutExt = modulePath.replace(/\.js$/, '')
+      const absolutePath = path.resolve(
+        path.dirname(importingPath),
+        modulePathWithoutExt,
+      )
+      const pathRelativeToRoot = path.relative(projectRoot, absolutePath)
+      return pathRelativeToRoot
     },
   },
 }
