@@ -162,6 +162,36 @@ const routes = {
 
 <!-- SNAP_TO_README:END -->
 
+**Configure `importAll` to transform import path before generating imports**
+
+`babel-plugin-macros.config.js`:
+
+```javascript
+module.exports = {
+  importAll: {
+    transformModulePath(modulePath) {
+      return modulePath.replace(/\.js$/, '')
+    },
+  },
+}
+```
+
+```javascript
+import importAll from 'import-all.macro'
+const a = importAll.sync('./files/*.js')
+      ↓ ↓ ↓ ↓ ↓ ↓
+import * as _filesA from './files/a'
+import * as _filesB from './files/b'
+import * as _filesC from './files/c'
+import * as _filesD from './files/d'
+const a = {
+  './files/a': _filesA,
+  './files/b': _filesB,
+  './files/c': _filesC,
+  './files/d': _filesD,
+}
+```
+
 ## Caveats
 
 Some static analysis tools (like ESLint, Flow, and Jest) wont like this very
