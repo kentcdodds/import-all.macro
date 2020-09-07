@@ -22,7 +22,7 @@ export function createMacroTests(pluginTesterOptions) {
   pluginTester({
     snapshot: true,
     formatResult(result) {
-      return prettier.format(result, prettierConfig)
+      return prettier.format(result, {...prettierConfig, parser: 'babel'})
     },
     ...pluginTesterOptions,
   })

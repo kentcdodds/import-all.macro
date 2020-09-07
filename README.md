@@ -145,51 +145,18 @@ const routes = importAll.deferred('./files/*.js')
       ↓ ↓ ↓ ↓ ↓ ↓
 
 const routes = {
-  './files/a.js': function() {
+  './files/a.js': function () {
     return import('./files/a.js')
   },
-  './files/b.js': function() {
+  './files/b.js': function () {
     return import('./files/b.js')
   },
-  './files/c.js': function() {
+  './files/c.js': function () {
     return import('./files/c.js')
   },
-  './files/d.js': function() {
+  './files/d.js': function () {
     return import('./files/d.js')
   },
-}
-```
-
-**Configure `importAll` to transform import path before generating imports**
-
-`babel-plugin-macros.config.js`:
-
-```javascript
-module.exports = {
-  importAll: {
-    transformModulePath(modulePath) {
-      return modulePath.replace(/\.js$/, '')
-    },
-  },
-}
-```
-
-```javascript
-import importAll from 'import-all.macro'
-
-const a = importAll.sync('./files/*.js')
-
-      ↓ ↓ ↓ ↓ ↓ ↓
-
-import * as _filesA from './files/a'
-import * as _filesB from './files/b'
-import * as _filesC from './files/c'
-import * as _filesD from './files/d'
-const a = {
-  './files/a': _filesA,
-  './files/b': _filesB,
-  './files/c': _filesC,
-  './files/d': _filesD,
 }
 ```
 
@@ -248,6 +215,7 @@ Thanks goes to these people ([emoji key][emojis]):
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors][all-contributors] specification.

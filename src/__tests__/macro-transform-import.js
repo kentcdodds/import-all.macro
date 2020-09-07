@@ -1,13 +1,21 @@
+import path from 'path'
 import plugin from 'babel-plugin-macros'
 
-import { createMacroTests } from './helpers/create-macro-test'
+import {createMacroTests} from './helpers/create-macro-test'
 
 createMacroTests({
   plugin: (babel, options) => {
     return plugin(babel, {
       importAll: {
-        transformModulePath(modulePath) {
-          return modulePath.replace(/\.js$/, '')
+        transformModulePath(modulePath, importingPath) {
+          const projectRoot = path.join(__dirname, '../../')
+          const modulePathWithoutExt = modulePath.replace(/\.js$/, '')
+          const absolutePath = path.resolve(
+            path.dirname(importingPath),
+            modulePathWithoutExt,
+          )
+          const pathRelativeToRoot = path.relative(projectRoot, absolutePath)
+          return pathRelativeToRoot
         },
       },
       ...options,

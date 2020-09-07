@@ -3,10 +3,10 @@ const path = require('path')
 const {createMacro} = require('babel-plugin-macros')
 const glob = require('glob')
 
-module.exports = createMacro(prevalMacros, { configName: 'importAll' })
+module.exports = createMacro(prevalMacros, {configName: 'importAll'})
 
 function prevalMacros({references, ...macroOptions}) {
-  const { babel } = macroOptions
+  const {babel} = macroOptions
   references.default.forEach(referencePath => {
     if (referencePath.parentPath.type === 'CallExpression') {
       asyncVersion({referencePath, ...macroOptions})
@@ -37,11 +37,11 @@ function syncVersion({referencePath, state, babel, config}) {
       opts: {filename},
     },
   } = state
-  const importSources = getImportSources(
-    referencePath.parentPath.parentPath,
-    path.dirname(filename),
+  const importSources = getImportSources({
+    callExpressionPath: referencePath.parentPath.parentPath,
+    filename,
     config,
-  )
+  })
 
   const {importNodes, objectProperties} = importSources.reduce(
     (all, source) => {
@@ -65,7 +65,7 @@ function syncVersion({referencePath, state, babel, config}) {
   referencePath.parentPath.parentPath.replaceWith(objectExpression)
 }
 
-function asyncVersion({referencePath, state, babel,config}) {
+function asyncVersion({referencePath, state, babel, config}) {
   const {types: t, template} = babel
   const {
     file: {
@@ -77,11 +77,11 @@ function asyncVersion({referencePath, state, babel,config}) {
       return IMPORT_OBJ
     })
   `)
-  const importSources = getImportSources(
-    referencePath.parentPath,
-    path.dirname(filename),
+  const importSources = getImportSources({
+    callExpressionPath: referencePath.parentPath,
+    filename,
     config,
-  )
+  })
 
   const {dynamicImports, objectProperties} = importSources.reduce(
     (all, source, index) => {
@@ -119,11 +119,11 @@ function deferredVersion({referencePath, state, babel, config}) {
       opts: {filename},
     },
   } = state
-  const importSources = getImportSources(
-    referencePath.parentPath.parentPath,
-    path.dirname(filename),
+  const importSources = getImportSources({
+    callExpressionPath: referencePath.parentPath.parentPath,
+    filename,
     config,
-  )
+  })
 
   const objectProperties = importSources.map(source => {
     return t.objectProperty(
@@ -145,7 +145,7 @@ function deferredVersion({referencePath, state, babel, config}) {
   referencePath.parentPath.parentPath.replaceWith(objectExpression)
 }
 
-function getImportSources(callExpressionPath, cwd, config) {
+function getImportSources({callExpressionPath, filename, config}) {
   let globValue
   try {
     globValue = callExpressionPath.get('arguments')[0].evaluate().value
@@ -160,9 +160,9 @@ function getImportSources(callExpressionPath, cwd, config) {
     )
   }
 
-  const filepaths = glob.sync(globValue, {cwd})
+  const filepaths = glob.sync(globValue, {cwd: path.dirname(filename)})
   if (typeof config.transformModulePath === 'function') {
-    return filepaths.map((p) => config.transformModulePath(p))
+    return filepaths.map(p => config.transformModulePath(p, filename))
   }
 
   return filepaths

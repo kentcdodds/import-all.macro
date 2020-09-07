@@ -8,15 +8,15 @@ const a = importAll.sync('./files/*.js')
 
       ↓ ↓ ↓ ↓ ↓ ↓
 
-import * as _filesA from './files/a'
-import * as _filesB from './files/b'
-import * as _filesC from './files/c'
-import * as _filesD from './files/d'
+import * as _src__tests__FixturesA from 'src/__tests__/files/a'
+import * as _src__tests__FixturesB from 'src/__tests__/files/b'
+import * as _src__tests__FixturesC from 'src/__tests__/files/c'
+import * as _src__tests__FixturesD from 'src/__tests__/files/d'
 const a = {
-  './files/a': _filesA,
-  './files/b': _filesB,
-  './files/c': _filesC,
-  './files/d': _filesD,
+  'src/__tests__/files/a': _src__tests__FixturesA,
+  'src/__tests__/files/b': _src__tests__FixturesB,
+  'src/__tests__/files/c': _src__tests__FixturesC,
+  'src/__tests__/files/d': _src__tests__FixturesD,
 }
 
 
