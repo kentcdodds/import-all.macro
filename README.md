@@ -14,7 +14,7 @@
 [![MIT License][license-badge]][license]
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![PRs Welcome][prs-badge]][prs]
 [![Code of Conduct][coc-badge]][coc]
@@ -247,12 +247,12 @@ Thanks goes to these people ([emoji key][emojis]):
     <td align="center"><a href="https://fatfisz.com"><img src="https://avatars0.githubusercontent.com/u/6004414?v=4" width="100px;" alt=""/><br /><sub><b>Rafał Ruciński</b></sub></a><br /><a href="https://github.com/kentcdodds/import-all.macro/issues?q=author%3Afatfisz" title="Bug reports">🐛</a> <a href="https://github.com/kentcdodds/import-all.macro/commits?author=fatfisz" title="Code">💻</a></td>
     <td align="center"><a href="https://stackshare.io/jdorfman/decisions"><img src="https://avatars1.githubusercontent.com/u/398230?v=4" width="100px;" alt=""/><br /><sub><b>Justin Dorfman</b></sub></a><br /><a href="#fundingFinding-jdorfman" title="Funding Finding">🔍</a></td>
     <td align="center"><a href="https://michaeldeboey.be"><img src="https://avatars3.githubusercontent.com/u/6643991?v=4" width="100px;" alt=""/><br /><sub><b>Michaël De Boey</b></sub></a><br /><a href="https://github.com/kentcdodds/import-all.macro/commits?author=MichaelDeBoey" title="Code">💻</a></td>
+    <td align="center"><a href="https://chengjianhua.github.io"><img src="https://avatars0.githubusercontent.com/u/10795207?v=4" width="100px;" alt=""/><br /><sub><b>Jianhua Cheng</b></sub></a><br /><a href="https://github.com/kentcdodds/import-all.macro/commits?author=chengjianhua" title="Code">💻</a> <a href="https://github.com/kentcdodds/import-all.macro/commits?author=chengjianhua" title="Tests">⚠️</a> <a href="https://github.com/kentcdodds/import-all.macro/commits?author=chengjianhua" title="Documentation">📖</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors][all-contributors] specification.

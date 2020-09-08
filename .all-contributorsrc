@@ -59,6 +59,17 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "chengjianhua",
+      "name": "Jianhua Cheng",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/10795207?v=4",
+      "profile": "https://chengjianhua.github.io",
+      "contributions": [
+        "code",
+        "test",
+        "doc"
+      ]
     }
   ]
 }
