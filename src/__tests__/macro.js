@@ -1,32 +1,11 @@
-import path from 'path'
-import pluginTester from 'babel-plugin-tester'
 import plugin from 'babel-plugin-macros'
-import prettier from 'prettier'
-import {prettier as prettierConfig} from 'kcd-scripts/config'
 
-const projectRoot = path.join(__dirname, '../../').replace(/\\/g, '/')
+import { createMacroTests } from './helpers/create-macro-test'
 
-expect.addSnapshotSerializer({
-  print(val) {
-    return val
-      .split(projectRoot)
-      .join('<PROJECT_ROOT>/')
-      .replace(/fixtures/g, 'files')
-      .replace(/..\/macro/, 'import-all.macro')
-  },
-  test(val) {
-    return typeof val === 'string'
-  },
-})
-
-pluginTester({
+createMacroTests({
   plugin,
-  snapshot: true,
   babelOptions: {
     filename: __filename,
-  },
-  formatResult(result) {
-    return prettier.format(result, prettierConfig)
   },
   tests: {
     'no usage': `import importAll from '../macro'`,
